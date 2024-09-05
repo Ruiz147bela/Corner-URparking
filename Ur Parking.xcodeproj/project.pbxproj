@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C6E8F472C867A65001BBAB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E8F462C867A65001BBAB2 /* GoogleService-Info.plist */; };
+		9C6E8F492C867C39001BBAB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E8F482C867C39001BBAB2 /* AppDelegate.swift */; };
 		9C8BA0382C86388600EBACB8 /* Ur_ParkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0372C86388600EBACB8 /* Ur_ParkingApp.swift */; };
-		9C8BA03A2C86388600EBACB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0392C86388600EBACB8 /* ContentView.swift */; };
 		9C8BA03C2C86388800EBACB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C8BA03B2C86388800EBACB8 /* Assets.xcassets */; };
 		9C8BA03F2C86388800EBACB8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C8BA03E2C86388800EBACB8 /* Preview Assets.xcassets */; };
 		9C8BA0492C86388800EBACB8 /* Ur_ParkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0482C86388800EBACB8 /* Ur_ParkingTests.swift */; };
 		9C8BA0532C86388800EBACB8 /* Ur_ParkingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0522C86388800EBACB8 /* Ur_ParkingUITests.swift */; };
 		9C8BA0552C86388800EBACB8 /* Ur_ParkingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0542C86388800EBACB8 /* Ur_ParkingUITestsLaunchTests.swift */; };
+		9C8BA0622C863C4B00EBACB8 /* InicioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0612C863C4B00EBACB8 /* InicioView.swift */; };
+		9C8BA0662C86454400EBACB8 /* ReservarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0652C86454400EBACB8 /* ReservarView.swift */; };
+		9C8BA0682C8649DC00EBACB8 /* ConfirmacionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0672C8649DC00EBACB8 /* ConfirmacionView.swift */; };
+		9C8BA06F2C86559200EBACB8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9C8BA06E2C86559200EBACB8 /* FirebaseAnalytics */; };
+		9C8BA0712C86559200EBACB8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9C8BA0702C86559200EBACB8 /* FirebaseAuth */; };
+		9C8BA0732C86559200EBACB8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9C8BA0722C86559200EBACB8 /* FirebaseFirestore */; };
+		9C8BA0772C8656F500EBACB8 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0762C8656F500EBACB8 /* FirestoreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C6E8F462C867A65001BBAB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		9C6E8F482C867C39001BBAB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C8BA0342C86388600EBACB8 /* Ur Parking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ur Parking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8BA0372C86388600EBACB8 /* Ur_ParkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ur_ParkingApp.swift; sourceTree = "<group>"; };
-		9C8BA0392C86388600EBACB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9C8BA03B2C86388800EBACB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C8BA03E2C86388800EBACB8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9C8BA0442C86388800EBACB8 /* Ur ParkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ur ParkingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +53,11 @@
 		9C8BA04E2C86388800EBACB8 /* Ur ParkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ur ParkingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8BA0522C86388800EBACB8 /* Ur_ParkingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ur_ParkingUITests.swift; sourceTree = "<group>"; };
 		9C8BA0542C86388800EBACB8 /* Ur_ParkingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ur_ParkingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9C8BA0612C863C4B00EBACB8 /* InicioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InicioView.swift; sourceTree = "<group>"; };
+		9C8BA0652C86454400EBACB8 /* ReservarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservarView.swift; sourceTree = "<group>"; };
+		9C8BA0672C8649DC00EBACB8 /* ConfirmacionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmacionView.swift; sourceTree = "<group>"; };
+		9C8BA06B2C86543500EBACB8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9C8BA0762C8656F500EBACB8 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +65,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C8BA06F2C86559200EBACB8 /* FirebaseAnalytics in Frameworks */,
+				9C8BA0712C86559200EBACB8 /* FirebaseAuth in Frameworks */,
+				9C8BA0732C86559200EBACB8 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +91,7 @@
 		9C8BA02B2C86388600EBACB8 = {
 			isa = PBXGroup;
 			children = (
+				9C6E8F482C867C39001BBAB2 /* AppDelegate.swift */,
 				9C8BA0362C86388600EBACB8 /* Ur Parking */,
 				9C8BA0472C86388800EBACB8 /* Ur ParkingTests */,
 				9C8BA0512C86388800EBACB8 /* Ur ParkingUITests */,
@@ -94,9 +112,14 @@
 		9C8BA0362C86388600EBACB8 /* Ur Parking */ = {
 			isa = PBXGroup;
 			children = (
+				9C6E8F462C867A65001BBAB2 /* GoogleService-Info.plist */,
 				9C8BA0372C86388600EBACB8 /* Ur_ParkingApp.swift */,
-				9C8BA0392C86388600EBACB8 /* ContentView.swift */,
+				9C8BA0612C863C4B00EBACB8 /* InicioView.swift */,
+				9C8BA0762C8656F500EBACB8 /* FirestoreManager.swift */,
+				9C8BA0652C86454400EBACB8 /* ReservarView.swift */,
+				9C8BA0672C8649DC00EBACB8 /* ConfirmacionView.swift */,
 				9C8BA03B2C86388800EBACB8 /* Assets.xcassets */,
+				9C8BA06B2C86543500EBACB8 /* GoogleService-Info.plist */,
 				9C8BA03D2C86388800EBACB8 /* Preview Content */,
 			);
 			path = "Ur Parking";
@@ -143,6 +166,11 @@
 			dependencies = (
 			);
 			name = "Ur Parking";
+			packageProductDependencies = (
+				9C8BA06E2C86559200EBACB8 /* FirebaseAnalytics */,
+				9C8BA0702C86559200EBACB8 /* FirebaseAuth */,
+				9C8BA0722C86559200EBACB8 /* FirebaseFirestore */,
+			);
 			productName = "Ur Parking";
 			productReference = 9C8BA0342C86388600EBACB8 /* Ur Parking.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +243,9 @@
 				Base,
 			);
 			mainGroup = 9C8BA02B2C86388600EBACB8;
+			packageReferences = (
+				9C8BA06D2C86559200EBACB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 9C8BA0352C86388600EBACB8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -232,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C8BA03F2C86388800EBACB8 /* Preview Assets.xcassets in Resources */,
+				9C6E8F472C867A65001BBAB2 /* GoogleService-Info.plist in Resources */,
 				9C8BA03C2C86388800EBACB8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,8 +289,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C8BA03A2C86388600EBACB8 /* ContentView.swift in Sources */,
+				9C6E8F492C867C39001BBAB2 /* AppDelegate.swift in Sources */,
+				9C8BA0682C8649DC00EBACB8 /* ConfirmacionView.swift in Sources */,
 				9C8BA0382C86388600EBACB8 /* Ur_ParkingApp.swift in Sources */,
+				9C8BA0622C863C4B00EBACB8 /* InicioView.swift in Sources */,
+				9C8BA0662C86454400EBACB8 /* ReservarView.swift in Sources */,
+				9C8BA0772C8656F500EBACB8 /* FirestoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +624,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9C8BA06D2C86559200EBACB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9C8BA06E2C86559200EBACB8 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C8BA06D2C86559200EBACB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		9C8BA0702C86559200EBACB8 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C8BA06D2C86559200EBACB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		9C8BA0722C86559200EBACB8 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C8BA06D2C86559200EBACB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9C8BA02C2C86388600EBACB8 /* Project object */;
 }
