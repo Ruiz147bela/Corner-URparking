@@ -18,8 +18,6 @@ Este repositorio contiene el código de la aplicación iOS y el sistema de hardw
 
 1. Ve a la carpeta `hardware-system`.
 2. Asegúrate de tener instalado Python 3 y OpenCV.
-3. Ejecuta `python3 camera_control.py` para inicializar el sistema de reconocimiento de placas.
-4. Configura las credenciales de Firebase en el script `firebase_interaction.py`.
 
 ## Dependencias
 
