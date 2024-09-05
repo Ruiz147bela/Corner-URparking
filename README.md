@@ -23,3 +23,6 @@ Este repositorio contiene el código de la aplicación iOS y el sistema de hardw
 
 - Firebase para manejo de datos en tiempo real y notificaciones.
 - OpenCV para reconocimiento de imágenes.
+
+## Bitácora 
+https://www.canva.com/design/DAGP680Mk6Q/nUHhgog_YMWPIQTe2zmGiQ/view?utm_content=DAGP680Mk6Q&utm_campaign=designshare&utm_medium=link&utm_source=editor
