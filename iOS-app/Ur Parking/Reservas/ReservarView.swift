@@ -71,22 +71,23 @@ struct PlacaTextField: View {
 struct ReservarView: View {
     private let firestoreManager = FirestoreManager()
     
-    @State private var placa1 = ""
-    @State private var placa2 = ""
-    @State private var placa3 = ""
-    @State private var placa4 = ""
-    @State private var placa5 = ""
-    @State private var placa6 = ""
-    
-    @State private var horaIngreso1 = ""
-    @State private var horaIngreso2 = ""
-    @State private var horaSalida1 = ""
-    @State private var horaSalida2 = ""
-    
-    @State private var showAlert = false
-    @State private var alertMessage = ""
-    
-    @State private var showConfirmation = false
+        @State var placa1 = ""
+        @State var placa2 = ""
+        @State var placa3 = ""
+        @State var placa4 = ""
+        @State var placa5 = ""
+        @State var placa6 = ""
+        
+        @State var horaIngreso1 = ""
+        @State var horaIngreso2 = ""
+        @State var horaSalida1 = ""
+        @State var horaSalida2 = ""
+        
+        @State var showAlert = false
+        @State var alertMessage = ""
+        
+        @State var showConfirmation = false
+
 
     var body: some View {
         ZStack {
@@ -148,7 +149,7 @@ struct ReservarView: View {
                 
                 Spacer()
                 
-                Button("RESERVAR") {
+                Button(action: {
                     let placaCompleta = "\(placa1)\(placa2)\(placa3)\(placa4)\(placa5)\(placa6)"
                     
                     // Verificación de que la placa esté completa
@@ -163,9 +164,9 @@ struct ReservarView: View {
                         let horaSalida = "\(horaSalida1):\(horaSalida2)"
                         let fecha = obtenerFechaActual()
                         
-                        firestoreManager.agregarReserva(placa: placaCompleta, horaIngreso: horaIngreso, horaSalida: horaSalida, fecha: fecha) { error in
-                            if let error = error {
-                                print("Error al guardar la reserva: \(error.localizedDescription)")
+                        firestoreManager.agregarReserva(placa: placaCompleta, horaIngreso: horaIngreso, horaSalida: horaSalida, fecha: fecha) { errorMessage in
+                            if let errorMessage = errorMessage {
+                                print("Error al guardar la reserva: \(errorMessage)")
                                 alertMessage = "Hubo un error al guardar la reserva. Inténtalo de nuevo."
                                 showAlert = true
                             } else {
@@ -177,18 +178,21 @@ struct ReservarView: View {
                         alertMessage = "Por favor, asegúrate de que las horas sean correctas."
                         showAlert = true
                     }
+                }) {
+                    Text("RESERVAR")
+                        .padding()
+                        .frame(width: 250)
+                        .background(Color(red: 0.6, green: 0.008, blue: 0.102))
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
-                .padding()
-                .frame(width: 250)
-                .background(Color(red: 0.6, green: 0.008, blue: 0.102))
-                .foregroundColor(.white)
-                .cornerRadius(10)
                 .alert(isPresented: $showAlert) {
                     Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                 }
                 .sheet(isPresented: $showConfirmation) {
                     ConfirmacionView()
                 }
+
             }
             .padding()
         }

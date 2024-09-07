@@ -9,19 +9,27 @@
 /* Begin PBXBuildFile section */
 		9C6E8F472C867A65001BBAB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E8F462C867A65001BBAB2 /* GoogleService-Info.plist */; };
 		9C6E8F492C867C39001BBAB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E8F482C867C39001BBAB2 /* AppDelegate.swift */; };
+		9C83A1E92C8CBB57007415F3 /* ReservarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83A1E82C8CBB57007415F3 /* ReservarView.swift */; };
+		9C83A1EC2C8CBB62007415F3 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83A1EA2C8CBB62007415F3 /* FirestoreManager.swift */; };
+		9C83A1F22C8CBDAA007415F3 /* ReservarViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83A1F12C8CBDAA007415F3 /* ReservarViewTests.swift */; };
+		9C83A1F52C8CBE76007415F3 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 9C83A1F42C8CBE76007415F3 /* ViewInspector */; };
+		9C83A1F82C8CBEC2007415F3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C83A1F72C8CBEC2007415F3 /* XCTest.framework */; platformFilter = ios; };
+		9C83A1FA2C8CD4AC007415F3 /* Reserva.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83A1F92C8CD4AC007415F3 /* Reserva.swift */; };
+		9C83A1FC2C8CD4CB007415F3 /* HistorialReservasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83A1FB2C8CD4CB007415F3 /* HistorialReservasView.swift */; };
+		9C83A1FE2C8CE017007415F3 /* ModificarReservasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83A1FD2C8CE017007415F3 /* ModificarReservasView.swift */; };
+		9C83A2002C8CE03F007415F3 /* CancelarReservaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83A1FF2C8CE03F007415F3 /* CancelarReservaView.swift */; };
+		9C83A2022C8CE643007415F3 /* FranjaHoraria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83A2012C8CE643007415F3 /* FranjaHoraria.swift */; };
+		9C83A2042C8CE68B007415F3 /* FranjasHorariasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C83A2032C8CE68B007415F3 /* FranjasHorariasView.swift */; };
 		9C8BA0382C86388600EBACB8 /* Ur_ParkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0372C86388600EBACB8 /* Ur_ParkingApp.swift */; };
 		9C8BA03C2C86388800EBACB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C8BA03B2C86388800EBACB8 /* Assets.xcassets */; };
 		9C8BA03F2C86388800EBACB8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C8BA03E2C86388800EBACB8 /* Preview Assets.xcassets */; };
-		9C8BA0492C86388800EBACB8 /* Ur_ParkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0482C86388800EBACB8 /* Ur_ParkingTests.swift */; };
 		9C8BA0532C86388800EBACB8 /* Ur_ParkingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0522C86388800EBACB8 /* Ur_ParkingUITests.swift */; };
 		9C8BA0552C86388800EBACB8 /* Ur_ParkingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0542C86388800EBACB8 /* Ur_ParkingUITestsLaunchTests.swift */; };
 		9C8BA0622C863C4B00EBACB8 /* InicioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0612C863C4B00EBACB8 /* InicioView.swift */; };
-		9C8BA0662C86454400EBACB8 /* ReservarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0652C86454400EBACB8 /* ReservarView.swift */; };
 		9C8BA0682C8649DC00EBACB8 /* ConfirmacionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0672C8649DC00EBACB8 /* ConfirmacionView.swift */; };
 		9C8BA06F2C86559200EBACB8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9C8BA06E2C86559200EBACB8 /* FirebaseAnalytics */; };
 		9C8BA0712C86559200EBACB8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9C8BA0702C86559200EBACB8 /* FirebaseAuth */; };
 		9C8BA0732C86559200EBACB8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9C8BA0722C86559200EBACB8 /* FirebaseFirestore */; };
-		9C8BA0772C8656F500EBACB8 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8BA0762C8656F500EBACB8 /* FirestoreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,20 +52,26 @@
 /* Begin PBXFileReference section */
 		9C6E8F462C867A65001BBAB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		9C6E8F482C867C39001BBAB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9C83A1E82C8CBB57007415F3 /* ReservarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservarView.swift; sourceTree = "<group>"; };
+		9C83A1EA2C8CBB62007415F3 /* FirestoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		9C83A1F12C8CBDAA007415F3 /* ReservarViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservarViewTests.swift; sourceTree = "<group>"; };
+		9C83A1F72C8CBEC2007415F3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		9C83A1F92C8CD4AC007415F3 /* Reserva.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reserva.swift; sourceTree = "<group>"; };
+		9C83A1FB2C8CD4CB007415F3 /* HistorialReservasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorialReservasView.swift; sourceTree = "<group>"; };
+		9C83A1FD2C8CE017007415F3 /* ModificarReservasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificarReservasView.swift; sourceTree = "<group>"; };
+		9C83A1FF2C8CE03F007415F3 /* CancelarReservaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelarReservaView.swift; sourceTree = "<group>"; };
+		9C83A2012C8CE643007415F3 /* FranjaHoraria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FranjaHoraria.swift; sourceTree = "<group>"; };
+		9C83A2032C8CE68B007415F3 /* FranjasHorariasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FranjasHorariasView.swift; sourceTree = "<group>"; };
 		9C8BA0342C86388600EBACB8 /* Ur Parking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ur Parking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8BA0372C86388600EBACB8 /* Ur_ParkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ur_ParkingApp.swift; sourceTree = "<group>"; };
 		9C8BA03B2C86388800EBACB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C8BA03E2C86388800EBACB8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9C8BA0442C86388800EBACB8 /* Ur ParkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ur ParkingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C8BA0482C86388800EBACB8 /* Ur_ParkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ur_ParkingTests.swift; sourceTree = "<group>"; };
 		9C8BA04E2C86388800EBACB8 /* Ur ParkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ur ParkingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8BA0522C86388800EBACB8 /* Ur_ParkingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ur_ParkingUITests.swift; sourceTree = "<group>"; };
 		9C8BA0542C86388800EBACB8 /* Ur_ParkingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ur_ParkingUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9C8BA0612C863C4B00EBACB8 /* InicioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InicioView.swift; sourceTree = "<group>"; };
-		9C8BA0652C86454400EBACB8 /* ReservarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservarView.swift; sourceTree = "<group>"; };
 		9C8BA0672C8649DC00EBACB8 /* ConfirmacionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmacionView.swift; sourceTree = "<group>"; };
-		9C8BA06B2C86543500EBACB8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		9C8BA0762C8656F500EBACB8 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +89,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C83A1F82C8CBEC2007415F3 /* XCTest.framework in Frameworks */,
+				9C83A1F52C8CBE76007415F3 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +104,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C83A1DF2C8CB6ED007415F3 /* Reservas */ = {
+			isa = PBXGroup;
+			children = (
+				9C83A1E82C8CBB57007415F3 /* ReservarView.swift */,
+				9C83A1F92C8CD4AC007415F3 /* Reserva.swift */,
+				9C83A2012C8CE643007415F3 /* FranjaHoraria.swift */,
+				9C83A1FB2C8CD4CB007415F3 /* HistorialReservasView.swift */,
+				9C83A1FD2C8CE017007415F3 /* ModificarReservasView.swift */,
+				9C83A1FF2C8CE03F007415F3 /* CancelarReservaView.swift */,
+				9C83A2032C8CE68B007415F3 /* FranjasHorariasView.swift */,
+			);
+			path = Reservas;
+			sourceTree = "<group>";
+		};
+		9C83A1E52C8CB815007415F3 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				9C83A1EA2C8CBB62007415F3 /* FirestoreManager.swift */,
+			);
+			path = Firestore;
+			sourceTree = "<group>";
+		};
+		9C83A1F62C8CBEC2007415F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C83A1F72C8CBEC2007415F3 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9C8BA02B2C86388600EBACB8 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +142,7 @@
 				9C8BA0472C86388800EBACB8 /* Ur ParkingTests */,
 				9C8BA0512C86388800EBACB8 /* Ur ParkingUITests */,
 				9C8BA0352C86388600EBACB8 /* Products */,
+				9C83A1F62C8CBEC2007415F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,11 +162,10 @@
 				9C6E8F462C867A65001BBAB2 /* GoogleService-Info.plist */,
 				9C8BA0372C86388600EBACB8 /* Ur_ParkingApp.swift */,
 				9C8BA0612C863C4B00EBACB8 /* InicioView.swift */,
-				9C8BA0762C8656F500EBACB8 /* FirestoreManager.swift */,
-				9C8BA0652C86454400EBACB8 /* ReservarView.swift */,
 				9C8BA0672C8649DC00EBACB8 /* ConfirmacionView.swift */,
+				9C83A1DF2C8CB6ED007415F3 /* Reservas */,
+				9C83A1E52C8CB815007415F3 /* Firestore */,
 				9C8BA03B2C86388800EBACB8 /* Assets.xcassets */,
-				9C8BA06B2C86543500EBACB8 /* GoogleService-Info.plist */,
 				9C8BA03D2C86388800EBACB8 /* Preview Content */,
 			);
 			path = "Ur Parking";
@@ -136,7 +182,7 @@
 		9C8BA0472C86388800EBACB8 /* Ur ParkingTests */ = {
 			isa = PBXGroup;
 			children = (
-				9C8BA0482C86388800EBACB8 /* Ur_ParkingTests.swift */,
+				9C83A1F12C8CBDAA007415F3 /* ReservarViewTests.swift */,
 			);
 			path = "Ur ParkingTests";
 			sourceTree = "<group>";
@@ -189,6 +235,9 @@
 				9C8BA0462C86388800EBACB8 /* PBXTargetDependency */,
 			);
 			name = "Ur ParkingTests";
+			packageProductDependencies = (
+				9C83A1F42C8CBE76007415F3 /* ViewInspector */,
+			);
 			productName = "Ur ParkingTests";
 			productReference = 9C8BA0442C86388800EBACB8 /* Ur ParkingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -245,6 +294,7 @@
 			mainGroup = 9C8BA02B2C86388600EBACB8;
 			packageReferences = (
 				9C8BA06D2C86559200EBACB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				9C83A1F02C8CBD66007415F3 /* XCRemoteSwiftPackageReference "ViewInspector" */,
 			);
 			productRefGroup = 9C8BA0352C86388600EBACB8 /* Products */;
 			projectDirPath = "";
@@ -289,12 +339,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C83A2002C8CE03F007415F3 /* CancelarReservaView.swift in Sources */,
+				9C83A1E92C8CBB57007415F3 /* ReservarView.swift in Sources */,
+				9C83A1FE2C8CE017007415F3 /* ModificarReservasView.swift in Sources */,
+				9C83A2022C8CE643007415F3 /* FranjaHoraria.swift in Sources */,
 				9C6E8F492C867C39001BBAB2 /* AppDelegate.swift in Sources */,
 				9C8BA0682C8649DC00EBACB8 /* ConfirmacionView.swift in Sources */,
+				9C83A1FC2C8CD4CB007415F3 /* HistorialReservasView.swift in Sources */,
 				9C8BA0382C86388600EBACB8 /* Ur_ParkingApp.swift in Sources */,
+				9C83A1FA2C8CD4AC007415F3 /* Reserva.swift in Sources */,
+				9C83A2042C8CE68B007415F3 /* FranjasHorariasView.swift in Sources */,
 				9C8BA0622C863C4B00EBACB8 /* InicioView.swift in Sources */,
-				9C8BA0662C86454400EBACB8 /* ReservarView.swift in Sources */,
-				9C8BA0772C8656F500EBACB8 /* FirestoreManager.swift in Sources */,
+				9C83A1EC2C8CBB62007415F3 /* FirestoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,7 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C8BA0492C86388800EBACB8 /* Ur_ParkingTests.swift in Sources */,
+				9C83A1F22C8CBDAA007415F3 /* ReservarViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +682,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9C83A1F02C8CBD66007415F3 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.11;
+			};
+		};
 		9C8BA06D2C86559200EBACB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -637,6 +701,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9C83A1F42C8CBE76007415F3 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C83A1F02C8CBD66007415F3 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
 		9C8BA06E2C86559200EBACB8 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9C8BA06D2C86559200EBACB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
