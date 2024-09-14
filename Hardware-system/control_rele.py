@@ -2,9 +2,10 @@ import RPi.GPIO as GPIO
 import time
 
 # Configurar el pin GPIO del relé
-RELAY_PIN = 27  # Pin 13 en la Raspberry Pi
+RELAY_PIN = 27  # Pin GPIO 27 en la Raspberry Pi
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(RELAY_PIN, GPIO.OUT)
+GPIO.output(RELAY_PIN, GPIO.LOW)  # Asegura que el relé esté apagado inicialmente
 
 # Función para activar el láser (abrir barrera)
 def activate_laser():
@@ -23,6 +24,9 @@ def main():
                 activate_laser()
             elif entrada == 'q':
                 break
+            else:
+                print("Opción no válida. Presiona 'y' para activar el láser o 'q' para salir.")
+            time.sleep(0.1)  # Añadir un pequeño retraso para evitar múltiples entradas rápidas
     finally:
         GPIO.cleanup()  # Limpia la configuración GPIO al finalizar
 
