@@ -7,12 +7,13 @@ from firebase_admin import credentials, firestore
 import RPi.GPIO as GPIO  # Importar la biblioteca para manejar los pines GPIO
 from picamera2 import Picamera2  # Biblioteca para manejar la cámara del Raspberry Pi
 import time
+from gpiozero import MotionSensor
 
 # Configurar la ruta a Tesseract en tu sistema
 pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'  # Cambiar la ruta según la ubicación en Raspberry Pi
 
 # Inicializar Firebase
-cred = credentials.Certificate("/home/pi/ur-parking-firebase-adminsdk.json")  # Ajusta la ruta según tu archivo
+cred = credentials.Certificate("/home/raspberry/Downloads/Corner-URparking-main/iOS-app/ur-parking-68811-firebase-adminsdk-5bpqm-58ecf1becb.json")  # Ajusta la ruta según tu archivo
 firebase_admin.initialize_app(cred)
 
 # Conectar a Firestore
@@ -20,13 +21,21 @@ db = firestore.client()
 
 # Configuración del sensor PIR
 GPIO.setmode(GPIO.BCM)  # Usar la numeración de pines BCM de Raspberry Pi
-PIR_PIN = 13  # El pin al que está conectado el sensor PIR
+PIR_PIN = 15  # El pin al que está conectado el sensor PIR
 GPIO.setup(PIR_PIN, GPIO.IN)  # Configurar el pin como entrada
+
+# Configuración del relé conectado al láser
+LASER_PIN = 18  # Pin al que está conectado el relé que controla el láser
+GPIO.setup(LASER_PIN, GPIO.OUT)  # Configurar el pin como salida
+
+# Asegurar que el láser esté encendido al inicio
+GPIO.output(LASER_PIN, GPIO.HIGH)
 
 # Inicializar la cámara de Raspberry Pi
 camera = Picamera2()
 camera_config = camera.create_still_configuration()
 camera.configure(camera_config)
+pir_v2 = MotionSensor(12)
 
 def mejorar_imagen(imagen):
     gris = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
@@ -100,14 +109,19 @@ def buscar_placa_en_firebase(placa):
 
     return bool(consulta)
 
+def apagar_laser_temporalmente():
+    print("Apagando láser...")
+    GPIO.output(LASER_PIN, GPIO.LOW)  # Apagar el láser (desactivar el relé)
+    time.sleep(5)  # Esperar 5 segundos
+    GPIO.output(LASER_PIN, GPIO.HIGH)  # Encender el láser (activar el relé)
+    print("Láser encendido nuevamente.")
+
 def esperar_movimiento_y_capturar():
     print("Esperando detección de movimiento...")
-
     while True:
-        if GPIO.input(PIR_PIN):
-            print("Movimiento detectado, capturando imagen...")
-            time.sleep(2)  # Pequeña pausa para asegurar que el objeto esté en el campo de visión
-            return capturar_imagen_con_raspberry_pi_camera()
+        pir_v2.wait_for_motion()
+        print("Movimiento detectado, capturando imagen...")
+        return capturar_imagen_con_raspberry_pi_camera()
 
 if __name__ == "__main__":
     imagen = esperar_movimiento_y_capturar()
@@ -118,5 +132,6 @@ if __name__ == "__main__":
         if texto_placa:
             if buscar_placa_en_firebase(texto_placa):
                 print("Acceso permitido")
+                apagar_laser_temporalmente()  # Apagar el láser si se confirma la placa
             else:
                 print("Acceso denegado")
