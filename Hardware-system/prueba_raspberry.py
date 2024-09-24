@@ -24,12 +24,11 @@ GPIO.setmode(GPIO.BCM)  # Usar la numeración de pines BCM de Raspberry Pi
 PIR_PIN = 15  # El pin al que está conectado el sensor PIR
 GPIO.setup(PIR_PIN, GPIO.IN)  # Configurar el pin como entrada
 
-# Configuración del relé conectado al láser
-LASER_PIN = 18  # Pin al que está conectado el relé que controla el láser
-GPIO.setup(LASER_PIN, GPIO.OUT)  # Configurar el pin como salida
-
-# Asegurar que el láser esté encendido al inicio
-GPIO.output(LASER_PIN, GPIO.HIGH)
+# Configuración de los relés conectados a los láseres
+LASER_PINS = [18, 23, 24, 25]  # Pines a los que están conectados los relés que controlan los láseres
+for pin in LASER_PINS:
+    GPIO.setup(pin, GPIO.OUT)  # Configurar los pines como salida
+    GPIO.output(pin, GPIO.HIGH)  # Encender todos los láseres al inicio
 
 # Inicializar la cámara de Raspberry Pi
 camera = Picamera2()
@@ -109,12 +108,14 @@ def buscar_placa_en_firebase(placa):
 
     return bool(consulta)
 
-def apagar_laser_temporalmente():
-    print("Apagando láser...")
-    GPIO.output(LASER_PIN, GPIO.LOW)  # Apagar el láser (desactivar el relé)
+def apagar_lasers_temporalmente():
+    print("Apagando láseres...")
+    for pin in LASER_PINS:
+        GPIO.output(pin, GPIO.LOW)  # Apagar todos los láseres (desactivar los relés)
     time.sleep(5)  # Esperar 5 segundos
-    GPIO.output(LASER_PIN, GPIO.HIGH)  # Encender el láser (activar el relé)
-    print("Láser encendido nuevamente.")
+    for pin in LASER_PINS:
+        GPIO.output(pin, GPIO.HIGH)  # Encender todos los láseres (activar los relés)
+    print("Láseres encendidos nuevamente.")
 
 def esperar_movimiento_y_capturar():
     print("Esperando detección de movimiento...")
@@ -132,6 +133,6 @@ if __name__ == "__main__":
         if texto_placa:
             if buscar_placa_en_firebase(texto_placa):
                 print("Acceso permitido")
-                apagar_laser_temporalmente()  # Apagar el láser si se confirma la placa
+                apagar_lasers_temporalmente()  # Apagar los láseres si se confirma la placa
             else:
                 print("Acceso denegado")
