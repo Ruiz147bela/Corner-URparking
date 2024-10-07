@@ -1,5 +1,4 @@
-//
-//  CancelarReservaView.swift
+//  CancelarReservasView.swift
 //  Ur Parking
 //
 //  Created by Isabela Ruiz Bustos on 7/09/24.
@@ -12,6 +11,7 @@ struct CancelarReservasView: View {
     @State private var reservaSeleccionada: Reserva? = nil
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @State private var alertTitle = ""  // Título para mostrar en la alerta
     
     let firestoreManager = FirestoreManager()
 
@@ -32,7 +32,7 @@ struct CancelarReservasView: View {
                     .cornerRadius(20) // Esquinas redondeadas
                     .padding(.horizontal) // Espacio a los lados
                 
-                // Lista de reservas futuras
+                // Lista de reservas futuras activas
                 List(reservasFuturas) { reserva in
                     HStack {
                         Text("Placa: \(reserva.placa) - \(reserva.fecha) \(reserva.horaIngreso) - \(reserva.horaSalida)")
@@ -59,7 +59,7 @@ struct CancelarReservasView: View {
                                 .cornerRadius(10)
                         }
                         .alert(isPresented: $showAlert) {
-                            Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                            Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                         }
                     }
                     .padding()
@@ -71,16 +71,28 @@ struct CancelarReservasView: View {
         }
     }
     
-    // Cargar reservas futuras
+    // Cargar reservas futuras activas
     private func cargarReservasFuturas() {
-        firestoreManager.obtenerReservasFuturas { reservas, error in
-            if let error = error {
-                print("Error al cargar reservas futuras: \(error.localizedDescription)")
-                return
+        let fechaActual = Date()
+        
+        firestoreManager.obtenerReservasEnTiempoReal { reservas in
+            // Filtrar solo las reservas activas (que no han terminado)
+            self.reservasFuturas = reservas.filter { reserva in
+                if let fechaHoraSalida = self.fechaDesdeString(fecha: reserva.fecha, hora: reserva.horaSalida) {
+                    return fechaHoraSalida > fechaActual // Mostrar solo reservas activas
+                }
+                return false
             }
-            self.reservasFuturas = reservas
         }
     }
+    
+    // Método para convertir la fecha y hora en un objeto Date
+    private func fechaDesdeString(fecha: String, hora: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return dateFormatter.date(from: "\(fecha) \(hora)")
+    }
+
     
     // Cancelar la reserva seleccionada
     private func cancelarReserva() {
@@ -90,13 +102,19 @@ struct CancelarReservasView: View {
 
         firestoreManager.cancelarReserva(idReserva: reserva.id.uuidString) { error in
             if let error = error {
+                alertTitle = "Error"
                 alertMessage = "Error al cancelar la reserva: \(error.localizedDescription)"
-                showAlert = true
             } else {
-                print("Reserva cancelada exitosamente")
+                alertTitle = "Cancelación Exitosa"
+                alertMessage = "La reserva ha sido cancelada exitosamente."
+                
+                // Actualizar la lista de reservas después de la cancelación
+                cargarReservasFuturas()
             }
+            showAlert = true
         }
     }
+
 
 }
 
@@ -105,3 +123,4 @@ struct CancelarReservasView_Previews: PreviewProvider {
         CancelarReservasView()
     }
 }
+

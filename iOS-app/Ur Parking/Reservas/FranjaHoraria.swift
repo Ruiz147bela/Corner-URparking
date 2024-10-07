@@ -12,5 +12,6 @@ struct FranjaHoraria: Identifiable {
     var horaInicio: String
     var horaFin: String
     var disponible: Bool
+    var cuposDisponibles: Int  // Nueva propiedad para almacenar los cupos disponibles
 }
 

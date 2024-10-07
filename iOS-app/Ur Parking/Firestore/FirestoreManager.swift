@@ -99,99 +99,75 @@ class FirestoreManager {
         return dateFormatter.date(from: "\(fecha) \(hora)")
     }
     
-    // Modificar una reserva si aún no ha comenzado
-    func modificarReserva(idReserva: String, nuevaHoraIngreso: String, nuevaHoraSalida: String, nuevaFecha: String, completion: @escaping (Error?) -> Void) {
-        let fechaActual = Date()
-        
-        // Consultar la reserva actual por su ID
-        db.collection(reservasCollection).document(idReserva).getDocument { (document, error) in
+    func modificarReserva(idReserva: String, nuevaHoraIngreso: String, nuevaHoraSalida: String, nuevaFecha: String, nuevaPlaca: String, completion: @escaping (Error?) -> Void) {
+        print("Intentando modificar la reserva con ID: \(idReserva)")
+
+        // Paso 1: Eliminar la reserva existente
+        db.collection(reservasCollection).document(idReserva).delete { error in
             if let error = error {
+                print("Error al eliminar la reserva existente: \(error.localizedDescription)")
                 completion(error)
                 return
             }
-            
-            guard let data = document?.data(),
-                  let horaIngresoActual = data["horaIngreso"] as? String,
-                  let fechaActualReserva = data["fecha"] as? String else {
-                completion(NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "Datos de la reserva no válidos"]))
-                return
-            }
-            
-            // Convertir la fecha y hora de la reserva a un objeto Date
-            if let fechaHoraIngreso = self.fechaDesdeString(fecha: fechaActualReserva, hora: horaIngresoActual), fechaHoraIngreso > fechaActual {
-                
-                // Modificar la reserva
-                self.db.collection(self.reservasCollection).document(idReserva).updateData([
-                    "horaIngreso": nuevaHoraIngreso,
-                    "horaSalida": nuevaHoraSalida,
-                    "fecha": nuevaFecha
-                ]) { error in
-                    completion(error)
+
+            print("Reserva eliminada correctamente.")
+
+            // Paso 2: Crear una nueva reserva con los datos actualizados
+            let nuevosDatos: [String: Any] = [
+                "placa": nuevaPlaca,
+                "horaIngreso": nuevaHoraIngreso,
+                "horaSalida": nuevaHoraSalida,
+                "fecha": nuevaFecha
+            ]
+
+            self.db.collection(self.reservasCollection).addDocument(data: nuevosDatos) { error in
+                if let error = error {
+                    print("Error al crear la nueva reserva: \(error.localizedDescription)")
+                } else {
+                    print("Nueva reserva creada exitosamente.")
                 }
-            } else {
-                // No se puede modificar porque el tiempo ya ha pasado o está en curso
-                completion(NSError(domain: "", code: 2, userInfo: [NSLocalizedDescriptionKey: "No puedes modificar la reserva porque ya ha comenzado o está por comenzar."]))
+                completion(error)
             }
         }
     }
-    
-    // Cancelar una reserva si aún no ha comenzado
+
+
     func cancelarReserva(idReserva: String, completion: @escaping (Error?) -> Void) {
-        let fechaActual = Date()
-        
-        // Consultar la reserva actual por su ID
-        db.collection(reservasCollection).document(idReserva).getDocument { (document, error) in
+        print("Intentando cancelar la reserva con ID: \(idReserva)")
+
+        // Eliminar la reserva existente
+        db.collection(reservasCollection).document(idReserva).delete { error in
             if let error = error {
+                print("Error al cancelar la reserva: \(error.localizedDescription)")
                 completion(error)
-                return
-            }
-            
-            guard let data = document?.data(),
-                  let horaIngresoActual = data["horaIngreso"] as? String,
-                  let fechaActualReserva = data["fecha"] as? String else {
-                completion(NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey: "Datos de la reserva no válidos"]))
-                return
-            }
-            
-            // Convertir la fecha y hora de la reserva a un objeto Date
-            if let fechaHoraIngreso = self.fechaDesdeString(fecha: fechaActualReserva, hora: horaIngresoActual), fechaHoraIngreso > fechaActual {
-                
-                // Eliminar la reserva
-                self.db.collection(self.reservasCollection).document(idReserva).delete() { error in
-                    completion(error)
-                }
             } else {
-                // No se puede cancelar porque el tiempo ya ha pasado o está en curso
-                completion(NSError(domain: "", code: 2, userInfo: [NSLocalizedDescriptionKey: "No puedes cancelar la reserva porque ya ha comenzado o está por comenzar."]))
+                print("Reserva cancelada exitosamente.")
+                completion(nil)
             }
         }
-        
-        
     }
+
+
+
     
-    // Obtener todas las reservas futuras
-        func obtenerReservasFuturas(completion: @escaping ([Reserva], Error?) -> Void) {
-            let fechaActual = Date()
-            
+    // Obtener reservas en tiempo real para una fecha específica
+        func obtenerReservasEnTiempoReal(completion: @escaping ([Reserva]) -> Void) {
             db.collection(reservasCollection)
-                .getDocuments { (snapshot, error) in
+                .addSnapshotListener { (snapshot, error) in
                     if let error = error {
-                        completion([], error)
+                        print("Error al obtener las reservas: \(error.localizedDescription)")
+                        completion([])
                         return
                     }
                     
-                    var reservasFuturas: [Reserva] = []
-                    
+                    var reservas: [Reserva] = []
                     snapshot?.documents.forEach { document in
                         let data = document.data()
-                        if let reserva = Reserva.from(data: data),
-                           let fechaIngreso = self.fechaDesdeString(fecha: reserva.fecha, hora: reserva.horaIngreso),
-                           fechaIngreso > fechaActual {
-                            reservasFuturas.append(reserva)
+                        if let reserva = Reserva.from(data: data) {
+                            reservas.append(reserva)
                         }
                     }
-                    
-                    completion(reservasFuturas, nil)
+                    completion(reservas)
                 }
         }
     

@@ -1,4 +1,3 @@
-//
 //  FranjasHorariasView.swift
 //  Ur Parking
 //
@@ -35,7 +34,7 @@ struct FranjasHorariasView: View {
                     Text("\(franja.horaInicio) - \(franja.horaFin)")
                     Spacer()
                     if franja.disponible {
-                        Text("Disponible")
+                        Text("Cupos disponibles: \(franja.cuposDisponibles)")
                             .foregroundColor(.green)
                     } else {
                         Text("Ocupado")
@@ -58,6 +57,9 @@ struct FranjasHorariasView: View {
     // Método para actualizar las franjas horarias según las reservas
     private func actualizarFranjasHorarias() {
         let horas = [
+            ("05:00", "06:00"),
+            ("06:00", "07:00"),
+            ("07:00", "08:00"),
             ("08:00", "09:00"),
             ("09:00", "10:00"),
             ("10:00", "11:00"),
@@ -67,7 +69,10 @@ struct FranjasHorariasView: View {
             ("14:00", "15:00"),
             ("15:00", "16:00"),
             ("16:00", "17:00"),
-            ("17:00", "18:00")
+            ("17:00", "18:00"),
+            ("18:00", "19:00"),
+            ("19:00", "10:00"),
+            ("20:00", "21:00")
         ]
         
         franjas = horas.map { (inicio, fin) in
@@ -79,8 +84,9 @@ struct FranjasHorariasView: View {
             
             // Si el número de reservas en la franja es mayor o igual al máximo permitido (30), se marca como ocupada
             let ocupada = reservasEnFranja.count >= maxReservas
+            let cuposDisponibles = maxReservas - reservasEnFranja.count
             
-            return FranjaHoraria(horaInicio: inicio, horaFin: fin, disponible: !ocupada)
+            return FranjaHoraria(horaInicio: inicio, horaFin: fin, disponible: !ocupada, cuposDisponibles: cuposDisponibles)
         }
     }
     
@@ -96,3 +102,4 @@ struct FranjasHorariasView_Previews: PreviewProvider {
         FranjasHorariasView()
     }
 }
+
