@@ -19,29 +19,37 @@ def mejorar_imagen(imagen):
     # Convertir a escala de grises
     gris = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
     
-    # Aumentar el contraste usando la ecualización del histograma
-    gris = cv2.equalizeHist(gris)
+    # Aplicar el filtro CLAHE para mejorar el contraste
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    gris = clahe.apply(gris)
     
     # Aplicar desenfoque gaussiano para reducir el ruido
-    gris = cv2.GaussianBlur(gris, (3, 3), 0)
-    
-    # Aumentar el contraste manualmente
-    alfa = 1.5  # Contraste
-    beta = 50   # Brillo
-    gris = cv2.convertScaleAbs(gris, alpha=alfa, beta=beta)
+    gris = cv2.GaussianBlur(gris, (5, 5), 0)
     
     # Redimensionar la imagen para que tenga un tamaño óptimo para Tesseract
     altura_optima = 400
     escala = altura_optima / gris.shape[0]
     gris = cv2.resize(gris, None, fx=escala, fy=escala, interpolation=cv2.INTER_LINEAR)
     
-    # Aplicar un umbral binario ajustado
-    _, imagen_binarizada = cv2.threshold(gris, 110, 255, cv2.THRESH_BINARY)
+    # Aplicar umbral adaptativo para binarizar la imagen
+    imagen_binarizada = cv2.adaptiveThreshold(
+        gris, 
+        255, 
+        cv2.ADAPTIVE_THRESH_GAUSSIAN_C, 
+        cv2.THRESH_BINARY_INV, 
+        15, 
+        10
+    )
     
-    # Aplicar un filtro morfológico de cierre para eliminar ruido (artefactos pequeños)
+    # Aplicar un filtro morfológico de cierre para limpiar el ruido
     kernel = np.ones((3, 3), np.uint8)
     imagen_binarizada = cv2.morphologyEx(imagen_binarizada, cv2.MORPH_CLOSE, kernel)
     
+    # Mostrar la imagen binarizada para depuración
+    cv2.imshow("Imagen Binarizada Mejorada", imagen_binarizada)
+    cv2.waitKey(3000)
+    cv2.destroyAllWindows()
+
     return imagen_binarizada
 
 def detectar_placa(imagen):
@@ -64,6 +72,11 @@ def detectar_placa(imagen):
         if len(aproximacion) == 4:
             x, y, w, h = cv2.boundingRect(c)
             placa_imagen = imagen_mejorada[y:y + h, x:x + w]
+            print(f"Posible placa detectada en las coordenadas: x={x}, y={y}, ancho={w}, alto={h}")
+            # Mostrar la imagen de la placa recortada
+            cv2.imshow("Placa Recortada", placa_imagen)
+            cv2.waitKey(3000)
+            cv2.destroyAllWindows()
             break
     
     if placa_imagen is None:
@@ -80,6 +93,11 @@ def detectar_placa(imagen):
     # Aplicar un filtro morfológico para limpieza
     kernel = np.ones((3, 3), np.uint8)
     placa_binaria = cv2.morphologyEx(placa_binaria, cv2.MORPH_CLOSE, kernel)
+
+    # Mostrar la imagen de la placa binarizada antes de pasarla a Tesseract
+    cv2.imshow("Placa Binarizada", placa_binaria)
+    cv2.waitKey(3000)
+    cv2.destroyAllWindows()
 
     # Configurar Tesseract
     config = '--psm 8 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'

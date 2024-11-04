@@ -10,15 +10,15 @@ import Firebase
 
 @main
 struct Ur_ParkingApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-
+    
     init() {
+        // Configurar Firebase
         FirebaseApp.configure()
     }
 
     var body: some Scene {
         WindowGroup {
-            InicioView()
+            InicioView() // Vista inicial de la aplicación
         }
     }
 }
