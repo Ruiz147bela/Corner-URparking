@@ -34,6 +34,11 @@ def mejorar_imagen(imagen):
     )
     kernel = np.ones((3, 3), np.uint8)
     imagen_binarizada = cv2.morphologyEx(imagen_binarizada, cv2.MORPH_CLOSE, kernel)
+
+    # Mostrar la imagen binarizada
+    cv2.imshow("Imagen Binarizada", imagen_binarizada)
+    cv2.waitKey(1)
+
     return imagen_binarizada
 
 # Función para detectar la placa en la imagen
@@ -64,6 +69,10 @@ def detectar_placa(imagen):
     kernel = np.ones((3, 3), np.uint8)
     placa_binaria = cv2.morphologyEx(placa_binaria, cv2.MORPH_CLOSE, kernel)
 
+    # Mostrar la imagen de la placa detectada
+    cv2.imshow("Placa Detectada", placa_binaria)
+    cv2.waitKey(1)
+
     config = '--psm 8 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
     texto = pytesseract.image_to_string(placa_binaria, config=config)
     texto = ''.join(e for e in texto if e.isalnum())
@@ -84,6 +93,16 @@ def capturar_imagen_con_raspberry_pi_camera():
     camera.stop()
     return frame
 
+# Función para apagar los láseres temporalmente
+def apagar_lasers_temporalmente():
+    print("Apagando láseres...")
+    for pin in LASER_PINS:
+        GPIO.output(pin, GPIO.LOW)
+    time.sleep(5)  # Esperar 5 segundos
+    for pin in LASER_PINS:
+        GPIO.output(pin, GPIO.HIGH)
+    print("Láseres encendidos nuevamente.")
+
 # Proceso principal
 if __name__ == "__main__":
     print("Esperando 10 segundos antes de comenzar...")
@@ -93,4 +112,7 @@ if __name__ == "__main__":
         imagen = capturar_imagen_con_raspberry_pi_camera()
         if imagen is not None:
             texto_placa = detectar_placa(imagen)
+            if texto_placa:
+                print("Realizando acción con los láseres...")
+                apagar_lasers_temporalmente()  # Simula el parpadeo de los láseres
         time.sleep(10)  # Intervalo entre capturas
